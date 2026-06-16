@@ -1,0 +1,94 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.container{
+    width:90%;
+    max-width:700px;
+    margin:auto;
+    padding:30px 0;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+textarea{
+    width:100%;
+    min-height:220px;
+    padding:15px;
+    font-size:18px;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+button{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+#result{
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    min-height:120px;
+}
+
+footer{
+    text-align:center;
+    font-size:14px;
+    padding:15px;
+}
+
+.risk-card{
+    padding:20px;
+    border-radius:12px;
+    margin-top:15px;
+}
+
+.risk-danger{
+    background:#ffe5e5;
+    border-left:8px solid #e53935;
+}
+
+.risk-warning{
+    background:#fff8e1;
+    border-left:8px solid #f9a825;
+}
+
+.risk-safe{
+    background:#e8f5e9;
+    border-left:8px solid #43a047;
+}
+
+.risk-title{
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
