@@ -1,19 +1,3 @@
-import { analyzeMessage } from "./js/gemini.js";
-
-const button = document.getElementById("checkBtn"); // Dùng id checkBtn từ HTML của bạn
-const result = document.getElementById("result");
-const messageInput = document.getElementById("messageInput");
-
-// Hàm điền tin mẫu
-window.fillSample = (type) => {
-    const samples = {
-        nganhang: "Tài khoản bạn đã bị khóa, truy cập http://vietcornbank.com để xác thực ngay.",
-        congan: "Công an đang điều tra liên quan CCCD, yêu cầu chuyển 10 triệu để xác minh.",
-        trungthuong: "Chúc mừng! Bạn trúng thưởng 500 triệu. Nhận tại: http://quatang.xyz"
-    };
-    messageInput.value = samples[type];
-};
-
 button.addEventListener("click", async () => {
     const message = messageInput.value.trim();
     
@@ -52,6 +36,21 @@ button.addEventListener("click", async () => {
         `;
     }
 });
+import { analyzeMessage } from "./js/gemini.js";
+
+const button = document.getElementById("checkBtn"); // Dùng id checkBtn từ HTML của bạn
+const result = document.getElementById("result");
+const messageInput = document.getElementById("messageInput");
+
+// Hàm điền tin mẫu
+window.fillSample = (type) => {
+    const samples = {
+        nganhang: "Tài khoản bạn đã bị khóa, truy cập http://vietcornbank.com để xác thực ngay.",
+        congan: "Công an đang điều tra liên quan CCCD, yêu cầu chuyển 10 triệu để xác minh.",
+        trungthuong: "Chúc mừng! Bạn trúng thưởng 500 triệu. Nhận tại: http://quatang.xyz"
+    };
+    messageInput.value = samples[type];
+};
 
 // Sự kiện chính khi bấm kiểm tra
 button.addEventListener("click", async () => {
