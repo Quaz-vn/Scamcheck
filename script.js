@@ -85,3 +85,35 @@ button.addEventListener("click", async () => {
     }
 
 });
+const samples = {
+    nganhang: "Tài khoản bạn đã bị khóa, truy cập http://vietcornbank.com để xác thực ngay.",
+    congan: "Công an đang điều tra liên quan CCCD, yêu cầu chuyển 10 triệu để xác minh.",
+    trungthuong: "Chúc mừng! Bạn trúng thưởng 500 triệu. Nhận tại: http://quatang.xyz"
+};
+
+function fillSample(type) {
+    document.getElementById("messageInput").value = samples[type];
+}
+
+document.getElementById('checkButton').addEventListener('click', async () => {
+    const input = document.getElementById("messageInput").value;
+    const resultDiv = document.getElementById("result");
+    const loading = document.getElementById("loading");
+
+    loading.style.display = "block";
+    resultDiv.innerText = "";
+
+    try {
+        const response = await fetch('/check-scam', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messageInput: input })
+        });
+        const data = await response.json();
+        resultDiv.innerText = data.result;
+    } catch (e) {
+        resultDiv.innerText = "Lỗi hệ thống!";
+    } finally {
+        loading.style.display = "none";
+    }
+});
