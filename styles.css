@@ -92,3 +92,44 @@ footer{
     font-weight:bold;
     margin-bottom:10px;
 }
+<style>
+    /* Tổng thể */
+    body { 
+        display: flex; flex-direction: column; align-items: center; 
+        min-height: 100vh; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+        background-color: #f4f7f6; 
+    }
+
+    /* Hiệu ứng đổ bóng cho ô nhập liệu */
+    textarea { 
+        width: 90%; max-width: 500px; height: 180px; 
+        margin: 15px 0; padding: 15px; 
+        border: 1px solid #ddd; border-radius: 12px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        outline: none; transition: border 0.3s ease;
+    }
+    textarea:focus { border-color: #007bff; }
+
+    /* Hiệu ứng nút bấm mượt mà */
+    button { 
+        padding: 12px 24px; background-color: #007bff; 
+        color: white; border: none; border-radius: 8px; 
+        cursor: pointer; font-weight: bold;
+        transition: transform 0.2s, background-color 0.3s;
+        box-shadow: 0 4px 6px rgba(0,123,255,0.2);
+    }
+    button:active { transform: scale(0.95); } /* Hiệu ứng nhấn nút trên iPhone */
+    button:hover { background-color: #0056b3; }
+
+    /* Màn hình chờ chuyên nghiệp */
+    #loading { margin: 15px; color: #555; font-weight: 500; }
+
+    /* Kết quả */
+    #result { 
+        margin-top: 20px; width: 90%; max-width: 500px; 
+        padding: 20px; background: white; border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    footer { margin-top: auto; padding: 20px; font-size: 11px; color: #aaa; }
+</style>
