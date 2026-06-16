@@ -61,3 +61,41 @@ button.addEventListener("click", async () => {
         result.innerHTML = `❌ Lỗi: ${error.message}`;
     }
 });
+button.addEventListener("click", async () => {
+    const message = messageInput.value.trim();
+    
+    // 1. Tin nhắn trống
+    if (!message) {
+        result.innerHTML = '<div class="risk-card risk-warning">⚠️ Vui lòng nhập nội dung tin nhắn để kiểm tra.</div>';
+        return;
+    }
+
+    // 2. Tin nhắn quá dài (>5000 ký tự)
+    if (message.length > 5000) {
+        result.innerHTML = '<div class="risk-card risk-danger">⚠️ Tin nhắn quá dài (trên 5000 ký tự). Vui lòng rút gọn!</div>';
+        return;
+    }
+
+    result.innerHTML = "⏳ Đang phân tích, vui lòng chờ trong giây lát...";
+
+    try {
+        const analysis = await analyzeMessage(message);
+
+        // 3. AI trả về dữ liệu không đúng cấu trúc
+        if (!analysis || !analysis.risk || !analysis.signs) {
+            throw new Error("Dữ liệu phản hồi không hợp lệ.");
+        }
+
+        // ... (phần code hiển thị kết quả thành công giữ nguyên) ...
+
+    } catch (error) {
+        // 4. Mất kết nối mạng hoặc lỗi server
+        // 5. AI từ chối phân tích nội dung
+        console.error("Lỗi:", error);
+        result.innerHTML = `
+            <div class="risk-card risk-danger">
+                ❌ <b>Không thể phân tích:</b> ${error.message || "Đã xảy ra lỗi kết nối. Vui lòng kiểm tra mạng và thử lại."}
+            </div>
+        `;
+    }
+});
