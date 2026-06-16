@@ -2,12 +2,21 @@
 <html lang="vi">
 
 <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ScamCheck</title>
-
-    <link rel="stylesheet" href="styles.css">
+    <title>ScamCheck - Kiểm tra tin nhắn lừa đảo</title>
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; font-family: Arial, sans-serif; }
+        .sample-buttons { margin: 15px 0; }
+        textarea { width: 90%; max-width: 500px; height: 150px; margin: 10px 0; padding: 10px; border-radius: 8px; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px; transition: 0.3s; }
+        button:hover { background-color: #0056b3; }
+        #loading { margin: 10px; color: #666; font-style: italic; }
+        #result { margin-top: 20px; width: 90%; max-width: 500px; padding: 15px; border-top: 2px solid #eee; }
+        footer { margin-top: auto; padding: 20px; text-align: center; font-size: 12px; color: #888; }
+    </style>
+</head>
 </head>
 
 <body>
@@ -32,6 +41,13 @@
 
     </main>
 
+    <div class="sample-buttons">
+        <button onclick="fillSample('nganhang')">Tin Ngân Hàng</button>
+        <button onclick="fillSample('congan')">Tin Công An</button>
+        <button onclick="fillSample('trungthuong')">Tin Trúng Thưởng</button>
+    </div>
+    <footer>ScamCheck là công cụ giáo dục do nhóm học viên phát triển và không thay thế cảnh báo chính thức từ ngân hàng hoặc cơ quan chức năng.</footer>
+    <script src="script.js"></script>
 
 
     <script src="config.js"></script>
