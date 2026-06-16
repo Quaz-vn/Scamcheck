@@ -43,4 +43,35 @@
     
     #result { width: 100%; }
     footer { margin-top: auto; padding: 20px; font-size: 14px; color: #888; text-align: center; }
+/* Tinh chỉnh nút tin mẫu cho đồng bộ */
+    .sample-buttons { 
+        display: flex; 
+        gap: 10px; 
+        margin: 15px 0; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+    }
+
+    .sample-buttons button { 
+        width: auto; 
+        padding: 10px 15px; 
+        background-color: #007bff; /* Màu xanh đồng bộ */
+        color: white; 
+        border: none; 
+        border-radius: 8px; 
+        cursor: pointer; 
+        font-size: 14px; 
+        font-weight: 500;
+        transition: transform 0.2s, background-color 0.3s;
+        box-shadow: 0 4px 6px rgba(0,123,255,0.2); /* Đổ bóng đồng bộ */
+    }
+
+    /* Hiệu ứng tương tác đồng nhất cho tất cả các nút */
+    .sample-buttons button:active, #checkBtn:active { 
+        transform: scale(0.95); 
+    }
+    
+    .sample-buttons button:hover { 
+        background-color: #0056b3; 
+    }
 </style>
