@@ -1,80 +1,31 @@
-import { analyzeMessage } from "./js/gemini.js";
+// Chuyển đổi Dark Mode
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', () => {
+    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+});
+document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
 
-const button = document.getElementById("checkBtn");
-const result = document.getElementById("result");
-const messageInput = document.getElementById("messageInput");
-
-// Hàm điền tin mẫu
+// Hàm mẫu (L2-06)
 window.fillSample = (type) => {
     const samples = {
-        nganhang: "Tài khoản bạn đã bị khóa, truy cập http://vietcornbank.com để xác thực ngay.",
-        congan: "Công an đang điều tra liên quan CCCD, yêu cầu chuyển 10 triệu để xác minh.",
-        trungthuong: "Chúc mừng! Bạn trúng thưởng 500 triệu. Nhận tại: http://quatang.xyz"
+        nganhang: "Tài khoản của bạn đã bị khóa, hãy đăng nhập tại http://vietcombank.update-account.com để xác thực.",
+        congan: "Công an gọi: Bạn có liên quan đến vụ án ma túy, yêu cầu chuyển 50 triệu vào tài khoản tạm giữ.",
+        trungthuong: "Chúc mừng! Bạn đã trúng thưởng 1 chiếc iPhone 15, hãy nhấn vào link bit.ly/trungthuong để nhận quà."
     };
-    messageInput.value = samples[type];
+    document.getElementById('messageInput').value = samples[type];
 };
 
-// Sự kiện nhấn nút duy nhất
-button.addEventListener("click", async () => {
-    const message = messageInput.value.trim();
-
-    // 1. Kiểm tra tin nhắn trống
-    if (!message) {
-        result.innerHTML = '<div class="risk-card risk-warning">⚠️ Vui lòng nhập nội dung tin nhắn để kiểm tra.</div>';
-        return;
-    }
-
-    // 2. Kiểm tra độ dài (>5000 ký tự)
-    if (message.length > 5000) {
-        result.innerHTML = '<div class="risk-card risk-danger">⚠️ Tin nhắn quá dài (trên 5000 ký tự). Vui lòng rút gọn!</div>';
-        return;
-    }
-
-    result.innerHTML = "⏳ Đang phân tích, vui lòng chờ trong giây lát...";
-
-    try {
-        const analysis = await analyzeMessage(message);
-
-        // 3. Kiểm tra cấu trúc dữ liệu
-        if (!analysis || !analysis.risk || !analysis.signs) {
-            throw new Error("Dữ liệu phản hồi không hợp lệ từ máy chủ.");
-        }
-
-        let riskClass = "risk-danger";
-        let riskIcon = "🟥";
-
-        if (analysis.risk === "Nghi ngờ") {
-            riskClass = "risk-warning";
-            riskIcon = "🟨";
-        } else if (analysis.risk === "An toàn") {
-            riskClass = "risk-safe";
-            riskIcon = "🟩";
-        }
-
-        const signsHtml = analysis.signs.map(sign => 
-            `<li><b>${sign.quote}</b><br>${sign.reason}</li>`
-        ).join("");
-
-        const actionsHtml = analysis.actions.map(action => 
-            `<li>${action}</li>`
-        ).join("");
-
-        result.innerHTML = `
-            <div class="risk-card ${riskClass}">
-                <div class="risk-title">${riskIcon} ${analysis.risk}</div>
-                <h3>Dấu hiệu phát hiện</h3>
-                <ul>${signsHtml}</ul>
-                <h3>Khuyến nghị</h3>
-                <ul>${actionsHtml}</ul>
-            </div>
-        `;
-
-    } catch (error) {
-        console.error("Lỗi hệ thống:", error);
-        result.innerHTML = `
-            <div class="risk-card risk-danger">
-                ❌ <b>Không thể phân tích:</b> ${error.message || "Đã xảy ra lỗi kết nối. Vui lòng thử lại sau."}
-            </div>
-        `;
-    }
+// Logic kiểm tra (L1-03 & L2-03)
+document.getElementById('checkBtn').addEventListener('click', () => {
+    const input = document.getElementById('messageInput').value;
+    const resultArea = document.getElementById('resultArea');
+    const badge = document.getElementById('riskBadge');
+    
+    // Giả lập kết quả (Sau này thay bằng gọi API Gemini thật)
+    resultArea.classList.remove('hidden');
+    badge.className = 'risk-badge dangerous';
+    badge.innerText = "NGUY HIỂM";
+    document.getElementById('analysisContent').innerText = "Đây là tin nhắn lừa đảo. Không bấm vào đường dẫn!";
 });
