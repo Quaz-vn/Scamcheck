@@ -3,68 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScamCheck - Kiểm tra tin nhắn lừa đảo</title>
-    <style>
-        /* CSS Tổng hợp từ yêu cầu L2-08 và L2-10 */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: #f4f7f6; min-height: 100vh; 
-            display: flex; flex-direction: column; align-items: center; 
-            padding: 20px; font-size: 18px; line-height: 1.6;
-        }
-        .container { width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; }
-        
-        textarea { 
-            width: 100%; height: 200px; padding: 15px; border: 2px solid #ddd; 
-            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            font-size: 18px; outline: none; transition: border 0.3s;
-        }
-        textarea:focus { border-color: #007bff; }
-        
-        button { 
-            width: 100%; padding: 15px; margin-top: 15px; background-color: #007bff; 
-            color: white; border: none; border-radius: 10px; cursor: pointer; 
-            font-size: 18px; font-weight: bold; transition: 0.2s;
-        }
-        button:active { transform: scale(0.98); }
-        
-        .sample-buttons { display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap; justify-content: center; }
-        .sample-buttons button { width: auto; font-size: 14px; padding: 8px 12px; background-color: #6c757d; }
-
-        #result { width: 100%; margin-top: 20px; }
-        .risk-card { padding: 20px; border-radius: 12px; margin-top: 15px; border-left: 8px solid #ccc; }
-        .risk-danger { background: #ffe5e5; border-left-color: #e53935; }
-        
-        footer { margin-top: auto; padding: 20px; font-size: 14px; color: #888; text-align: center; }
-    </style>
+    <title>ScamCheck</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <main class="container">
-        <h1>🛡️ ScamCheck</h1>
-        <p>Kiểm tra nhanh tin nhắn nghi ngờ lừa đảo</p>
+    <div class="app-wrapper">
+        <header>
+            <h1>🛡️ ScamCheck</h1>
+            <p>Kiểm tra nhanh tin nhắn nghi ngờ lừa đảo</p>
+        </header>
 
-        <textarea id="messageInput" placeholder="Dán nội dung tin nhắn vào đây..."></textarea>
+        <main>
+            <textarea id="messageInput" placeholder="Dán nội dung tin nhắn vào đây..."></textarea>
 
-        <div class="sample-buttons">
-            <button onclick="fillSample('nganhang')">Tin Ngân Hàng</button>
-            <button onclick="fillSample('congan')">Tin Công An</button>
-            <button onclick="fillSample('trungthuong')">Tin Trúng Thưởng</button>
-        </div>
+            <div class="sample-buttons">
+                <button onclick="fillSample('nganhang')">Tin Ngân Hàng</button>
+                <button onclick="fillSample('congan')">Tin Công An</button>
+                <button onclick="fillSample('trungthuong')">Tin Trúng Thưởng</button>
+            </div>
 
-        <button id="checkBtn">Kiểm tra</button>
+            <button id="checkBtn">Kiểm tra ngay</button>
 
-        <section id="result"></section>
+            <section id="resultArea" class="hidden">
+                <div id="riskBadge" class="risk-badge"></div>
+                <div id="analysisContent"></div>
+            </section>
+        </main>
 
-        <h3>Lịch sử kiểm tra</h3>
-        <div id="historyList" style="width: 100%;"></div>
-    </main>
-
-    <footer>
-        ScamCheck là công cụ giáo dục do nhóm học viên phát triển và không thay thế cảnh báo chính thức từ ngân hàng hoặc cơ quan chức năng.
-    </footer>
-
+        <footer>
+            ScamCheck là công cụ giáo dục do nhóm học viên phát triển và không thay thế cảnh báo chính thức từ ngân hàng hoặc cơ quan chức năng.
+        </footer>
+    </div>
     <script src="script.js" type="module"></script>
 </body>
 </html>
