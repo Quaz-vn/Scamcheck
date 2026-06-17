@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScamCheck</title>
+    <title>ScamCheck | Kiểm tra lừa đảo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-wrapper">
         <header>
-            <h1>🛡️ ScamCheck</h1>
-            <p>Kiểm tra nhanh tin nhắn nghi ngờ lừa đảo</p>
+            <div class="header-top">
+                <h1>🛡️ ScamCheck</h1>
+                <button id="themeToggle">🌙/☀️</button>
+            </div>
+            <p>Phát hiện tin nhắn lừa đảo trong 1 giây</p>
         </header>
 
         <main>
             <textarea id="messageInput" placeholder="Dán nội dung tin nhắn vào đây..."></textarea>
-
             <div class="sample-buttons">
                 <button onclick="fillSample('nganhang')">Tin Ngân Hàng</button>
                 <button onclick="fillSample('congan')">Tin Công An</button>
                 <button onclick="fillSample('trungthuong')">Tin Trúng Thưởng</button>
             </div>
-
             <button id="checkBtn">Kiểm tra ngay</button>
-
             <section id="resultArea" class="hidden">
                 <div id="riskBadge" class="risk-badge"></div>
                 <div id="analysisContent"></div>
@@ -31,7 +31,7 @@
         </main>
 
         <footer>
-            ScamCheck là công cụ giáo dục do nhóm học viên phát triển và không thay thế cảnh báo chính thức từ ngân hàng hoặc cơ quan chức năng.
+            ScamCheck là công cụ giáo dục do nhóm học viên phát triển và không thay thế cảnh báo chính thức từ cơ quan chức năng.
         </footer>
     </div>
     <script src="script.js" type="module"></script>
