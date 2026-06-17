@@ -1,85 +1,39 @@
-<style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body { 
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-        background-color: #f4f7f6; 
-        min-height: 100vh; 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        padding: 20px;
-        font-size: 18px;
-        line-height: 1.6;
-    }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScamCheck | Kiểm tra lừa đảo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <header>
+            <div class="header-top">
+                <h1>🛡️ ScamCheck</h1>
+                <button id="themeToggle">🌙/☀️</button>
+            </div>
+            <p>Phát hiện tin nhắn lừa đảo trong 1 giây</p>
+        </header>
 
-    .container { width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; }
+        <main>
+            <textarea id="messageInput" placeholder="Dán nội dung tin nhắn vào đây..."></textarea>
+            <div class="sample-buttons">
+                <button onclick="fillSample('nganhang')">Tin Ngân Hàng</button>
+                <button onclick="fillSample('congan')">Tin Công An</button>
+                <button onclick="fillSample('trungthuong')">Tin Trúng Thưởng</button>
+            </div>
+            <button id="checkBtn">Kiểm tra ngay</button>
+            <section id="resultArea" class="hidden">
+                <div id="riskBadge" class="risk-badge"></div>
+                <div id="analysisContent"></div>
+            </section>
+        </main>
 
-    /* Textarea chuyên nghiệp */
-textarea { 
-    width: 100%; 
-    max-width: 500px; 
-    min-height: 200px; /* Chiều cao tối thiểu */
-    max-height: 400px; /* Giới hạn chiều cao tối đa để không che hết màn hình */
-    padding: 15px; 
-    border: 2px solid #ddd; 
-    border-radius: 12px; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    font-size: 18px; 
-    outline: none; 
-    transition: border 0.3s;
-    overflow-y: auto; /* Tự động hiển thị thanh cuộn khi văn bản quá dài */
-    resize: vertical; /* Cho phép người dùng kéo thả độ cao nếu muốn */
-}
-
-    /* Nút bấm UX tối ưu cho iPhone */
-    button { 
-        width: 100%; padding: 15px; margin-top: 15px;
-        background-color: #007bff; color: white; border: none; 
-        border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold;
-        transition: transform 0.2s, background-color 0.3s;
-        box-shadow: 0 4px 6px rgba(0,123,255,0.2);
-    }
-    button:active { transform: scale(0.98); } 
-    button:hover { background-color: #0056b3; }
-
-    /* Thẻ kết quả (Risk Cards) */
-    .risk-card { padding: 20px; border-radius: 12px; margin-top: 20px; width: 100%; }
-    .risk-danger { background: #ffe5e5; border-left: 8px solid #e53935; }
-    .risk-warning { background: #fff8e1; border-left: 8px solid #f9a825; }
-    .risk-safe { background: #e8f5e9; border-left: 8px solid #43a047; }
-    
-    #result { width: 100%; }
-    footer { margin-top: auto; padding: 20px; font-size: 14px; color: #888; text-align: center; }
-/* Tinh chỉnh nút tin mẫu cho đồng bộ */
-    .sample-buttons { 
-        display: flex; 
-        gap: 10px; 
-        margin: 15px 0; 
-        flex-wrap: wrap; 
-        justify-content: center; 
-    }
-
-    .sample-buttons button { 
-        width: auto; 
-        padding: 10px 15px; 
-        background-color: #007bff; /* Màu xanh đồng bộ */
-        color: white; 
-        border: none; 
-        border-radius: 8px; 
-        cursor: pointer; 
-        font-size: 14px; 
-        font-weight: 500;
-        transition: transform 0.2s, background-color 0.3s;
-        box-shadow: 0 4px 6px rgba(0,123,255,0.2); /* Đổ bóng đồng bộ */
-    }
-
-    /* Hiệu ứng tương tác đồng nhất cho tất cả các nút */
-    .sample-buttons button:active, #checkBtn:active { 
-        transform: scale(0.95); 
-    }
-    
-    .sample-buttons button:hover { 
-        background-color: #0056b3; 
-    }
-</style>
+        <footer>
+            ScamCheck là công cụ giáo dục do nhóm học viên phát triển và không thay thế cảnh báo chính thức từ cơ quan chức năng.
+        </footer>
+    </div>
+    <script src="script.js" type="module"></script>
+</body>
+</html>
